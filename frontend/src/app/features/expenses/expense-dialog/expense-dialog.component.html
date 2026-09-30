@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ incomingData ? 'Edit Expense' : 'Add Expense' }}</h2>
+<mat-dialog-content>
+  <form #expenseForm="ngForm" class="expense-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" [(ngModel)]="data.title" name="title" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Amount ($)</mat-label>
+      <input matInput type="number" [(ngModel)]="data.amount" name="amount" required min="0.01">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date</mat-label>
+      <input matInput type="date" [(ngModel)]="data.date" name="date" required>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="!expenseForm.valid" (click)="onSave()">Save</button>
+</mat-dialog-actions>
+
+<style>
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  margin-top: 10px;
+}
+.full-width {
+  width: 100%;
+  margin-bottom: 5px;
+}
+</style>
